@@ -1,0 +1,19 @@
+version: '3'
+services:
+  asf:
+    image: justarchi/archisteamfarm:latest
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    container_name: asf
+    ports:
+      - "[HOST IP]:1242:1242"
+    volumes:
+      - /data/docker/ASF/config:/app/config
+      - /data/docker/ASF/plugins:/app/plugins
+      - /data/docker/ASF/logs:/app/logs
+    restart: no
+
+networks:
+  default:
+    external: true
+    name: swag

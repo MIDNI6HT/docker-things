@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+    adguardhome:
+        image: adguard/adguardhome
+        labels:
+             - com.centurylinklabs.watchtower.monitor-only="true"
+        ports:
+            - '[ADGUARD IP ADDRESS]:53:53/tcp'
+            - '[ADGUARD IP ADDRESS]:53/udp'
+            - '3001:3001/tcp'
+            - '3000:3000/tcp'
+           # - '5443:5443/udp'
+           # - '5443:5443/tcp'
+           # - '8853:8853/udp'
+           # - '853:853/udp'
+           # - '784:784/udp'
+           # - '853:853/tcp'
+           # - '443:443/udp'
+           # - '443:443/tcp'
+           # - '80:80/tcp'
+           # - '68:68/udp'
+           # - '67:67/udp'
+           # - '53:53/udp'
+           # - '53:53/tcp'
+        volumes:
+            - '/data/docker/adguard/confdir:/opt/adguardhome/conf'
+            - '/data/docker/adguard/workdir:/opt/adguardhome/work'
+        restart: unless-stopped
+        container_name: adguardhome
+
+
+networks:
+  default:
+    external: true
+    name: swag

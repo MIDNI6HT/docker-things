@@ -1,0 +1,27 @@
+version: "2.3"
+
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      NTFY_CACHE_FILE: /var/lib/ntfy/cache.db
+      NTFY_AUTH_FILE: /var/lib/ntfy/auth.db
+      NTFY_AUTH_DEFAULT_ACCESS: deny-all
+      NTFY_ENABLE_LOGIN: true
+      TZ: "[YOUR TIME ZONE]"    # optional: set desired timezone
+    volumes:
+      - /data/docker/ntfy/cache:/var/lib/ntfy
+    # - /data/docker/ntfy/config:/etc/ntfy #optional for custom server.yml file
+    ports:
+      - 7200:80
+    command:
+      - serve
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: swag

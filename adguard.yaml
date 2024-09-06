@@ -5,8 +5,8 @@ services:
         labels:
              - com.centurylinklabs.watchtower.monitor-only="true"
         ports:
-            - '[ADGUARD IP ADDRESS]:53:53/tcp'
-            - '[ADGUARD IP ADDRESS]:53/udp'
+            - '[HOST IP]:53:53/tcp'
+            - '[HOST IP]:53/udp'
             - '3001:3001/tcp'
             - '3000:3000/tcp'
            # - '5443:5443/udp'
